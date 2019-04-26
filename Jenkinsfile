@@ -1,14 +1,14 @@
 pipeline {
   agent any
   stages {
-    stage('install') {
+    stage('Docker image') {
       steps {
-        sh 'npm start'
+        sh 'docker build -t demo'
       }
     }
-    stage('test') {
+    stage('Run docker') {
       steps {
-        sh 'npm test'
+        sh 'docker run -t -p 3000:3000 demo'
       }
     }
   }
